@@ -29,8 +29,7 @@ namespace CollectDataAP
          
         static void Main(string[] args)
         {
-            MessageBox.Show(Environment.UserName);
-
+            //MessageBox.Show(Environment.UserName);
             //MutexForConsole();
 
             //Mutex mutex = new Mutex(true, appName, out createdNew);
@@ -43,17 +42,25 @@ namespace CollectDataAP
             //return;
 
             //KillAllNotepadProcesses();
-            ProcessStart.processStart_KillProcesses(Process.GetCurrentProcess().Id.ToString());
+            string s_processId = RegistryWindows.getValueProcessId(Environment.UserName);
+            //ProcessStart.processStart_KillProcesses(Process.GetCurrentProcess().Id.ToString());
+
+            if (s_processId != "nothing") ProcessStart.processStart_KillProcesses(s_processId);
+
             //}
             //else
             //{
-                //MessageBox.Show(appName + "Start is running!");
+            //MessageBox.Show(appName + "Start is running!");
             //}
             //System.Threading.Thread.Sleep(10000);
 
             //string patch = System.Windows.Forms.Application.StartupPath;
             //string patch = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            
+
+            ProcessStart.processStart_regProcessId(Environment.UserName, Process.GetCurrentProcess().Id.ToString());
+
+
+
             HotkeyInitial hotkeyInitial = new HotkeyInitial();
 
             SystemEvents.PowerModeChanged += new PowerModeChangedEventHandler(SystemEvents_PowerModeChanged);

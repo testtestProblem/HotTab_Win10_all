@@ -45,7 +45,7 @@ namespace KillProcess_test
 
             //string userName = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
             System.Diagnostics.Process[] procs = System.Diagnostics.Process.GetProcessesByName("CollectDataAP", "."); // use "." for this machine
-            System.Diagnostics.Process[] procsExe = System.Diagnostics.Process.GetProcessesByName("CollectDataAP.exe", "."); // use "." for this machine
+                                                                                                                      //System.Diagnostics.Process[] procsExe = System.Diagnostics.Process.GetProcessesByName("CollectDataAP.exe", "."); // use "." for this machine
 
             //Console.WriteLine(userName+ "  "+Environment.UserName);
 
@@ -53,12 +53,9 @@ namespace KillProcess_test
 
             //System.Diagnostics.Process[] procs = System.Diagnostics.Process.GetProcessesByName(data,"."); // use "." for this machine
             //foreach (var proc in procs) proc.Kill();
+            foreach (var proc in procs) if (proc.Id == Int32.Parse(pid)) proc.Kill();
+            //foreach (var proc in procs)  if (proc.Id != Int32.Parse(pid)) proc.Kill();
 
-            foreach (var proc in procs)
-                if (proc.Id != Int32.Parse(pid)) proc.Kill();
-
-            foreach (var proc in procsExe)
-                if (proc.Id != Int32.Parse(pid)) proc.Kill();
         }
     }
 }
